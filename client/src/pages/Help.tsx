@@ -16,11 +16,11 @@ export default function Help() {
             <h2 className="text-xl font-semibold text-cyan-500">How to Use the Calculator</h2>
             <ol className="list-decimal list-inside space-y-2">
               <li>Enter the amount of gems you want to calculate interest for</li>
-              <li>The calculator will automatically show interest for:</li>
+              <li>The calculator will automatically show compound interest for:</li>
               <ul className="list-disc list-inside ml-6">
                 <li>1 day (0.15% interest)</li>
-                <li>7 days (7 × 0.15% interest)</li>
-                <li>30 days (30 × 0.15% interest)</li>
+                <li>7 days (compound interest at 0.15% daily)</li>
+                <li>30 days (compound interest at 0.15% daily)</li>
               </ul>
             </ol>
           </section>

@@ -9,11 +9,20 @@ const DAILY_RATE = 0.0015; // 0.15%
 export default function InterestCalculator() {
   const [amount, setAmount] = useState("");
 
-  const calculateInterest = (days: number): string => {
+  const calculateCompoundInterest = (days: number): string => {
     if (!amount || isNaN(Number(amount))) return "0";
     const principal = parseFloat(amount);
-    const interest = principal * DAILY_RATE * days;
-    return interest.toLocaleString('en-US', {
+    
+    // Calculate compounding interest
+    let total = principal;
+    for (let day = 0; day < days; day++) {
+      const dailyInterest = total * DAILY_RATE;
+      total += dailyInterest;
+    }
+    
+    // Return only the interest portion, not including principal
+    const interestOnly = total - principal;
+    return interestOnly.toLocaleString('en-US', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     });
@@ -53,22 +62,22 @@ export default function InterestCalculator() {
           <div className="grid gap-4">
             <div className="p-4 rounded-lg border border-cyan-500/50">
               <div className="text-sm text-cyan-500">1 Day Interest</div>
-              <div className="text-2xl font-bold">{calculateInterest(1)} gems</div>
+              <div className="text-2xl font-bold">{calculateCompoundInterest(1)} gems</div>
             </div>
 
             <div className="p-4 rounded-lg border border-cyan-500/50">
               <div className="text-sm text-cyan-500">7 Days Interest</div>
-              <div className="text-2xl font-bold">{calculateInterest(7)} gems</div>
+              <div className="text-2xl font-bold">{calculateCompoundInterest(7)} gems</div>
             </div>
 
             <div className="p-4 rounded-lg border border-cyan-500/50">
               <div className="text-sm text-cyan-500">30 Days Interest</div>
-              <div className="text-2xl font-bold">{calculateInterest(30)} gems</div>
+              <div className="text-2xl font-bold">{calculateCompoundInterest(30)} gems</div>
             </div>
           </div>
 
           <p className="text-sm text-gray-400 mt-4">
-            *Interest is calculated at a rate of 0.15% per day
+            *Interest is calculated at a compound rate of 0.15% per day
           </p>
         </div>
       </CardContent>
