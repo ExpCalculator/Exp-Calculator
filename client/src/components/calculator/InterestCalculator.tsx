@@ -10,10 +10,20 @@ export default function InterestCalculator() {
   const [amount, setAmount] = useState("");
 
   const calculateInterest = (days: number): string => {
-    if (!amount || isNaN(Number(amount))) return "0.00";
+    if (!amount || isNaN(Number(amount))) return "0";
     const principal = parseFloat(amount);
     const interest = principal * DAILY_RATE * days;
-    return interest.toFixed(2);
+    return interest.toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  };
+
+  const formatAmount = (value: string) => {
+    // Remove existing commas first
+    const plainNumber = value.replace(/,/g, '');
+    if (!plainNumber || isNaN(Number(plainNumber))) return "";
+    return Number(plainNumber).toLocaleString('en-US');
   };
 
   return (
@@ -32,9 +42,9 @@ export default function InterestCalculator() {
             </Label>
             <Input
               id="amount"
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              type="text"
+              value={formatAmount(amount)}
+              onChange={(e) => setAmount(e.target.value.replace(/,/g, ''))}
               placeholder="Enter amount"
               className="border-cyan-500 bg-black text-white"
             />
