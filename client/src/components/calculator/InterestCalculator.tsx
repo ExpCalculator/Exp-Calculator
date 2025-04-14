@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Calculator } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,20 +9,42 @@ const DAILY_RATE = 0.0015; // 0.15%
 export default function InterestCalculator() {
   const [amount, setAmount] = useState("");
 
-  const calculateCompoundInterest = (days: number): string => {
-    if (!amount || isNaN(Number(amount))) return "0";
-    const principal = parseFloat(amount);
-    
+  const calculateCompoundInterest = (days: number, principal: number) => {
     // Calculate compound interest over the specified days
-    // Formula: P * ((1 + r)^n - 1) where:
+    // Formula: P * (1 + r)^n for total amount
     // P = principal, r = rate per period, n = number of periods
-    const interestOnly = principal * (Math.pow(1 + DAILY_RATE, days) - 1);
+    const newTotal = principal * Math.pow(1 + DAILY_RATE, days);
+    const interestOnly = newTotal - principal;
     
-    return interestOnly.toLocaleString('en-US', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
+    return {
+      interest: interestOnly.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }),
+      total: newTotal.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })
+    };
   };
+
+  // Calculate all interest values at once
+  const results = useMemo(() => {
+    if (!amount || isNaN(Number(amount))) {
+      return {
+        day1: { interest: "0", total: "0" },
+        day7: { interest: "0", total: "0" },
+        day30: { interest: "0", total: "0" }
+      };
+    }
+    
+    const principal = parseFloat(amount);
+    return {
+      day1: calculateCompoundInterest(1, principal),
+      day7: calculateCompoundInterest(7, principal),
+      day30: calculateCompoundInterest(30, principal)
+    };
+  }, [amount]);
 
   const formatAmount = (value: string) => {
     // Remove existing commas first
@@ -58,22 +80,31 @@ export default function InterestCalculator() {
           <div className="grid gap-4">
             <div className="p-4 rounded-lg border border-cyan-500 bg-black">
               <div className="text-sm font-medium text-cyan-400">1 Day Interest</div>
-              <div className="text-2xl font-bold text-white">
-                <span className="text-cyan-300">{calculateCompoundInterest(1)}</span> gems
+              <div className="text-xl font-bold text-white">
+                Interest: <span className="text-cyan-300">{results.day1.interest}</span> gems
+              </div>
+              <div className="text-xl font-bold text-white mt-2 pt-2 border-t border-cyan-500/30">
+                New Total: <span className="text-cyan-400">{results.day1.total}</span> gems
               </div>
             </div>
 
             <div className="p-4 rounded-lg border border-cyan-500 bg-black">
               <div className="text-sm font-medium text-cyan-400">7 Days Interest</div>
-              <div className="text-2xl font-bold text-white">
-                <span className="text-cyan-300">{calculateCompoundInterest(7)}</span> gems
+              <div className="text-xl font-bold text-white">
+                Interest: <span className="text-cyan-300">{results.day7.interest}</span> gems
+              </div>
+              <div className="text-xl font-bold text-white mt-2 pt-2 border-t border-cyan-500/30">
+                New Total: <span className="text-cyan-400">{results.day7.total}</span> gems
               </div>
             </div>
 
             <div className="p-4 rounded-lg border border-cyan-500 bg-black">
               <div className="text-sm font-medium text-cyan-400">30 Days Interest</div>
-              <div className="text-2xl font-bold text-white">
-                <span className="text-cyan-300">{calculateCompoundInterest(30)}</span> gems
+              <div className="text-xl font-bold text-white">
+                Interest: <span className="text-cyan-300">{results.day30.interest}</span> gems
+              </div>
+              <div className="text-xl font-bold text-white mt-2 pt-2 border-t border-cyan-500/30">
+                New Total: <span className="text-cyan-400">{results.day30.total}</span> gems
               </div>
             </div>
           </div>
