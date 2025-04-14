@@ -13,15 +13,11 @@ export default function InterestCalculator() {
     if (!amount || isNaN(Number(amount))) return "0";
     const principal = parseFloat(amount);
     
-    // Calculate compounding interest
-    let total = principal;
-    for (let day = 0; day < days; day++) {
-      const dailyInterest = total * DAILY_RATE;
-      total += dailyInterest;
-    }
+    // Calculate compound interest over the specified days
+    // Formula: P * ((1 + r)^n - 1) where:
+    // P = principal, r = rate per period, n = number of periods
+    const interestOnly = principal * (Math.pow(1 + DAILY_RATE, days) - 1);
     
-    // Return only the interest portion, not including principal
-    const interestOnly = total - principal;
     return interestOnly.toLocaleString('en-US', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
@@ -60,23 +56,29 @@ export default function InterestCalculator() {
           </div>
 
           <div className="grid gap-4">
-            <div className="p-4 rounded-lg border border-cyan-500/50">
-              <div className="text-sm text-cyan-500">1 Day Interest</div>
-              <div className="text-2xl font-bold">{calculateCompoundInterest(1)} gems</div>
+            <div className="p-4 rounded-lg border border-cyan-500 bg-gradient-to-r from-black to-cyan-950/20 shadow-lg shadow-cyan-500/10">
+              <div className="text-sm font-medium text-cyan-400">1 Day Interest</div>
+              <div className="text-2xl font-bold text-white">
+                <span className="text-cyan-300">{calculateCompoundInterest(1)}</span> gems
+              </div>
             </div>
 
-            <div className="p-4 rounded-lg border border-cyan-500/50">
-              <div className="text-sm text-cyan-500">7 Days Interest</div>
-              <div className="text-2xl font-bold">{calculateCompoundInterest(7)} gems</div>
+            <div className="p-4 rounded-lg border border-cyan-500 bg-gradient-to-r from-black to-cyan-950/20 shadow-lg shadow-cyan-500/10">
+              <div className="text-sm font-medium text-cyan-400">7 Days Interest</div>
+              <div className="text-2xl font-bold text-white">
+                <span className="text-cyan-300">{calculateCompoundInterest(7)}</span> gems
+              </div>
             </div>
 
-            <div className="p-4 rounded-lg border border-cyan-500/50">
-              <div className="text-sm text-cyan-500">30 Days Interest</div>
-              <div className="text-2xl font-bold">{calculateCompoundInterest(30)} gems</div>
+            <div className="p-4 rounded-lg border border-cyan-500 bg-gradient-to-r from-black to-cyan-950/20 shadow-lg shadow-cyan-500/10">
+              <div className="text-sm font-medium text-cyan-400">30 Days Interest</div>
+              <div className="text-2xl font-bold text-white">
+                <span className="text-cyan-300">{calculateCompoundInterest(30)}</span> gems
+              </div>
             </div>
           </div>
 
-          <p className="text-sm text-gray-400 mt-4">
+          <p className="text-sm text-cyan-500/70 mt-4 border-t border-cyan-500/20 pt-4">
             *Interest is calculated at a compound rate of 0.15% per day
           </p>
         </div>

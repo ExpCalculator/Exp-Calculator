@@ -43,6 +43,7 @@ export default function Footer() {
         
         <div className="mt-8 pt-8 border-t border-cyan-500/30 text-center text-gray-400">
           <p>&copy; {new Date().getFullYear()} EXP Interest Calculator. All rights reserved.</p>
+          <p className="mt-2 text-cyan-500/70">v1.12</p>
         </div>
       </div>
     </footer>
