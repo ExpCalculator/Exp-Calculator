@@ -13,37 +13,34 @@ export default function Home() {
         </AlertDescription>
       </Alert>
       
-      <Card className="border-cyan-500 bg-black/50">
-        <CardContent className="pt-4">
-          <p className="text-cyan-400 text-sm">
-            This website was designed and created by @4.fizz on discord, suggestions for this website can be sent directly via discord.
-          </p>
-        </CardContent>
-      </Card>
+      <Alert className="bg-black border-cyan-500">
+        <AlertCircle className="h-4 w-4 text-cyan-400" />
+        <AlertDescription className="text-cyan-400">
+          This website was designed and created by @4.fizz on discord, suggestions for this website can be sent directly via discord.
+        </AlertDescription>
+      </Alert>
       
       <InterestCalculator />
       
-      <Card className="border-cyan-500 bg-black">
-        <CardContent className="pt-6 pb-6">
-          <div className="flex items-start gap-3">
-            <MessageCircle className="h-5 w-5 text-cyan-500 mt-0.5" />
-            <div>
-              <h3 className="text-lg font-semibold text-cyan-500 mb-2">EXP Discord Community</h3>
-              <p className="text-gray-300 mb-3">
-                This website was designed for EXP's discord server to help people calculate their interest fast, accurately, and simply.
-              </p>
-              <a 
-                href="https://discord.gg/gems" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-cyan-400 hover:text-cyan-300 font-medium flex items-center"
-              >
-                Join Discord Server
-              </a>
-            </div>
+      <div className="border border-cyan-500 rounded-lg p-4 bg-black">
+        <div className="flex items-start gap-3">
+          <MessageCircle className="h-5 w-5 text-cyan-500 mt-0.5" />
+          <div>
+            <h3 className="text-lg font-semibold text-cyan-500 mb-2">EXP Discord Community</h3>
+            <p className="text-gray-300 mb-3">
+              This website was designed for EXP's discord server to help people calculate their interest fast, accurately, and simply.
+            </p>
+            <a 
+              href="https://discord.gg/gems" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:text-cyan-300 font-medium"
+            >
+              Join Discord Server
+            </a>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

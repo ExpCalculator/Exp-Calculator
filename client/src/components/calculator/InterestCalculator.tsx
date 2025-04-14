@@ -56,21 +56,21 @@ export default function InterestCalculator() {
           </div>
 
           <div className="grid gap-4">
-            <div className="p-4 rounded-lg border border-cyan-500 bg-gradient-to-r from-black to-cyan-950/20 shadow-lg shadow-cyan-500/10">
+            <div className="p-4 rounded-lg border border-cyan-500 bg-black">
               <div className="text-sm font-medium text-cyan-400">1 Day Interest</div>
               <div className="text-2xl font-bold text-white">
                 <span className="text-cyan-300">{calculateCompoundInterest(1)}</span> gems
               </div>
             </div>
 
-            <div className="p-4 rounded-lg border border-cyan-500 bg-gradient-to-r from-black to-cyan-950/20 shadow-lg shadow-cyan-500/10">
+            <div className="p-4 rounded-lg border border-cyan-500 bg-black">
               <div className="text-sm font-medium text-cyan-400">7 Days Interest</div>
               <div className="text-2xl font-bold text-white">
                 <span className="text-cyan-300">{calculateCompoundInterest(7)}</span> gems
               </div>
             </div>
 
-            <div className="p-4 rounded-lg border border-cyan-500 bg-gradient-to-r from-black to-cyan-950/20 shadow-lg shadow-cyan-500/10">
+            <div className="p-4 rounded-lg border border-cyan-500 bg-black">
               <div className="text-sm font-medium text-cyan-400">30 Days Interest</div>
               <div className="text-2xl font-bold text-white">
                 <span className="text-cyan-300">{calculateCompoundInterest(30)}</span> gems
