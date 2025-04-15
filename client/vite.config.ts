@@ -19,8 +19,18 @@ export default defineConfig({
       "@shared": path.resolve(__dirname, "..", "shared"),
     },
   },
+  // Use the Vercel-specific entry point
+  optimizeDeps: {
+    entries: ['./src/vercel-entry.tsx']
+  },
+  // Define the entry point for Vercel builds
   build: {
     outDir: path.resolve(__dirname, "..", "dist", "client"),
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
+    },
   },
 });
