@@ -13,7 +13,7 @@ import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white" style={{ backgroundColor: '#000000' }}>
+    <div className="min-h-screen flex flex-col bg-black text-cyan-400" style={{ backgroundColor: '#000000' }}>
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
         <Switch>
