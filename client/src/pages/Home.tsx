@@ -13,7 +13,7 @@ export default function Home() {
         </AlertDescription>
       </Alert>
       
-      <Alert className="bg-black border-cyan-500">
+      <Alert className="bg-cyan-500/10 border-cyan-500">
         <AlertCircle className="h-4 w-4 text-cyan-400" />
         <AlertDescription className="text-cyan-400">
           This website was designed and created by @4.fizz on discord, suggestions for this website can be sent directly via discord.
