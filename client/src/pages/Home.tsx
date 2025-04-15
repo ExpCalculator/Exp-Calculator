@@ -8,14 +8,14 @@ export default function Home() {
     <div className="max-w-2xl mx-auto space-y-8">
       <Alert className="bg-cyan-500/10 border-cyan-500 [&>svg]:!text-cyan-400">
         <AlertCircle className="h-4 w-4" />
-        <AlertDescription>
+        <AlertDescription className="text-cyan-400">
           This is a fan-made calculator and is not officially affiliated with EXP.
         </AlertDescription>
       </Alert>
 
       <Alert className="bg-cyan-500/10 border-cyan-500 [&>svg]:!text-cyan-400">
         <AlertCircle className="h-4 w-4" />
-        <AlertDescription>
+        <AlertDescription className="text-cyan-400">
           This website was designed and created by @4.fizz on discord, suggestions for this website can be sent directly via discord.
         </AlertDescription>
       </Alert>
