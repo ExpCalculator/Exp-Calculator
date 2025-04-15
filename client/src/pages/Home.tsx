@@ -6,22 +6,22 @@ import { Card, CardContent } from "@/components/ui/card";
 export default function Home() {
   return (
     <div className="max-w-2xl mx-auto space-y-8">
-      <Alert className="bg-cyan-500/10 border-cyan-500">
-        <AlertCircle className="h-4 w-4 text-cyan-400" />
-        <AlertDescription className="text-cyan-400">
+      <Alert className="bg-cyan-500/10 border-cyan-500 [&>svg]:!text-cyan-400">
+        <AlertCircle className="h-4 w-4" />
+        <AlertDescription>
           This is a fan-made calculator and is not officially affiliated with EXP.
         </AlertDescription>
       </Alert>
-      
-      <Alert className="bg-cyan-500/10 border-cyan-500">
-        <AlertCircle className="h-4 w-4 text-cyan-400" />
-        <AlertDescription className="text-cyan-400">
+
+      <Alert className="bg-cyan-500/10 border-cyan-500 [&>svg]:!text-cyan-400">
+        <AlertCircle className="h-4 w-4" />
+        <AlertDescription>
           This website was designed and created by @4.fizz on discord, suggestions for this website can be sent directly via discord.
         </AlertDescription>
       </Alert>
-      
+
       <InterestCalculator />
-      
+
       <div className="border border-cyan-500 rounded-lg p-4 bg-black">
         <div className="flex items-start gap-3">
           <MessageCircle className="h-5 w-5 text-cyan-500 mt-0.5" />
